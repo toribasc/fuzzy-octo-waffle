@@ -1,0 +1,169 @@
+h2{ font-size: 25px; padding-left:20px; }
+button{ float: right; font-size: 20px; }
+#header{ 	display:none; padding-right:20px; padding-top: 10px; padding-bottom: 10px; background-color: #dfdce3;  background-color: #4abdac;}
+#snacks .col{
+
+}
+h1 {color:#000000;}
+p {color:#000000;}
+body {background-color:#FFFFFF;}
+
+.col.over {
+  border: 2px dashed #000;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list{
+width:130px;
+margin:3px;
+background-repeat: no-repeat;
+border: 1px solid blue;
+border-radius: 10px;
+text-align:center;
+vertical-align: middle;
+}
+.ad{
+	margin:auto;
+	
+}
+.hello{
+	background-color:green;
+	visibility: hidden;
+}
+#maincontent{
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 20px;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	height:90%;
+}
+.container{
+	
+}
+.twos{
+	display:flex;
+}
+.center{
+	margin: auto;
+	text-align: center;
+	vertical-align: middle;
+}
+.col{
+	border: 2px solid gray;
+	width: 100px;
+	height: 100px;
+	margin:0;
+	padding:0;
+
+}
+.vert{
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin:0;
+	width:100px;
+	font-size: 15px;
+}
+.vert2{
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin:0;
+	width:70px;
+	font-size: 10px;
+}
+p{
+	margin:0;
+}
+.small{
+	font-size:10px;
+	padding:5px;
+	width:110px;
+	overflow-wrap: break-word;
+}
+.medium{
+	font-size:15px;
+	padding:5px;
+	width:110px;
+	overflow-wrap: break-word;
+	
+}
+.large{
+	font-size:20px;
+	padding:10px;
+	width:110px;
+	overflow-wrap: break-word;	
+}
+.xl{
+	font-size:23px;
+	padding:10px;
+	width:110px;
+}
+.test{
+	border: 0.5px dashed black;
+	border-radius: 10px;
+	width: 90%;
+	margin: auto;
+}
+
+#breakfast{
+	background-color: rgb(249,194,129);
+	border: 2px solid #4abdac;
+}
+#lunch{
+	background-color: rgb(249,169,134);
+		border: 2px solid #4abdac;
+}
+#dinner{
+	background-color: rgb(245,128,104);
+		border: 2px solid #4abdac;
+}
+#snacks{
+	background-color: rgb(162,202,193);	border: 2px solid #4abdac;
+}
+.days{
+	margin:auto;
+	text-align: center;
+	border: none;
+	height: 40px;
+	font-size: 10px;
+	}
+.meal{
+	font-size: 2vw;
+	border: none;
+	height: 30px;
+}
+#scope{
+	font-size: 1.4vw;
+	background-color: #4abdac;
+	text-align: center;
+}
+body{
+	color: black;
+	font-family: 'Roboto', sans-serif;
+	background-color: #dfdce3; 
+	white-space: initial;
+}
+.container{
+	font-family: 'Montserrat', sans-serif;
+}
+.ow {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+.col-3{
+	display:none;
+	
+}
+.ad{
+	display:none;
+}

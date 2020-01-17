@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<!-- PAPERWORK -->
+<head>
+	<title>Meal Planner - Design and Print</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script data-ad-client="ca-pub-4991410078116406" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<link rel="stylesheet" media="screen" href="main.css" />
+	<link rel="stylesheet" media="print" href="print.css" />
+
+</head>
+<body>
+
+<!--HEADER class="sticky-top" -->
+<div  id="header">
+<button  type="button" class="btn-default">New</button>
+<button>Save</button>
+<button class="btn-default" onClick="printing()">Print</button>
+<h2>Free Meal Plan Maker</h2>
+</div>
+
+<style>
+
+</style>
+
+<!--MAIN CONTENT -->
+<div id="maincontent">
+<div class="row">
+<div class="col-9">
+<div class="container">
+  <div class="row" id="scope">
+	<div class="col center days"></div>
+    <div class="col meal">Mon</div>
+    <div class="col meal">Tues</div>
+	<div class="col meal">Wed</div>
+    <div class="col meal">Thurs</div>
+	<div class="col meal">Fri</div>
+	<div class="col meal">Sat</div>
+    <div class="col meal">Sun</div>
+  </div>
+  <div class="row" id="breakfast">
+  <div class="col center days">BREAKFAST</div>
+	<div class="col"></div>
+    <div class="col"></div>
+	<div class="col"></div>
+    <div class="col"></div>
+	<div class="col"></div>
+	<div class="col"></div>
+	<div class="col"></div>
+  </div> 
+  <div class="row" id="lunch">
+  <div class="col center days">LUNCH</div>
+  	<div class="col"></div>
+    <div class="col"></div>
+	<div class="col"></div>
+    <div class="col"></div>
+	<div class="col"></div>
+	<div class="col"></div>
+	<div class="col"></div>
+  </div> 
+  <div class="row" id="dinner">
+    <div class="col center days">DINNER</div>
+	<div class="col"></div>
+    <div class="col"></div>
+	<div class="col"></div>
+    <div class="col"></div>
+	<div class="col"></div>
+	<div class="col"></div>
+	<div class="col"></div>
+  </div> 
+  <div class="row" id="snacks">
+    <div class="col center days">SNACKS</div>
+	<div class="col"></div>
+    <div class="col"></div>
+	<div class="col"></div>
+    <div class="col"></div>
+	<div class="col"></div>
+	<div class="col"></div>
+	<div class="col"></div>
+  </div>
+</div>
+<div class="ad vert" style="padding-top:15px;width:100%; margin:auto;">
+	<img src="" width="728" height="90"/>
+</div>
+<script>
+<!-- ADD MEAL -->
+function printing(){
+window.print();
+}
+var items;
+var y = document.getElementsByClassName("col").length; 
+var meal = 1;
+for(var i=8;i<y;i++){
+	var x = document.getElementsByClassName("col")[i];
+	if(i%8 != 0){
+		x.setAttribute("id","meal" + meal);
+		x.setAttribute("class","col vert ow");
+		x.setAttribute("draggable","true");
+	//	x.innerHTML = x.id;
+		meal++;
+	}
+}
+// "empty" = no meal added
+var MealList = [];
+MealList.push("empty");
+var MealsOfTheWeek = [];
+//initialize each day to empty/no meal
+for(var i=0;i<28;i++){ MealsOfTheWeek[i] = MealList[0] };
+<!-- ADD BUTTON -->
+var countMeals = 0;
+function addMeal(){
+	var meal = document.getElementById("inputMeal").value;
+	if( meal.length > 2 ){
+		countMeals++;
+		var meal = document.getElementById("inputMeal").value;
+		MealList.push(meal);
+		var b = document.createElement("button");
+		b.setAttribute("type","button");
+		b.setAttribute("class", "close");
+		b.setAttribute("aria-label","Close");
+		b.setAttribute("onClick","deleteMeal(" + countMeals +")");
+		var s = document.createElement("SPAN");
+		s.setAttribute("aria-hidden","true");
+		s.innerHTML = "&times;";
+		b.appendChild(s);
+		b.setAttribute("outline","none");
+		var x = document.createElement("div");
+		x.setAttribute("draggable", "true");
+		x.setAttribute("class","p-2 item draggable list border-info ow");	
+		x.appendChild(b);
+		x.innerHTML += meal;
+		b.setAttribute("id","delete" + countMeals);
+		x.setAttribute("id", "mealItem" + countMeals);
+		document.getElementById("listOfMeals").appendChild(x);
+		items = document.querySelectorAll('.item');
+		document.getElementById("inputMeal").value = "";
+
+[].forEach.call(items, function(col) {
+  col.addEventListener('dragstart', handleDragStart, false);
+  col.addEventListener('dragenter', handleDragEnter, false)
+  col.addEventListener('dragover', handleDragOver, false);
+  col.addEventListener('dragleave', handleDragLeave, false);
+  col.addEventListener('drop', handleDrop, false);
+  col.addEventListener('dragend', handleDragEnd, false);
+});
+	}
+//	console.log(MealList);
+//	console.log(MealsOfTheWeek);
+}
+function deleteMeal(meal_id){
+	countMeals--;
+	var k = "mealItem" + meal_id;
+	var element = document.getElementById(k);
+	alert(meal_id);
+	//remove item and adjust id number
+
+	for(var i=0;i<28;i++){
+		if(MealsOfTheWeek[i] == meal_id ){
+			MealsOfTheWeek[i] = "defunct";
+		}else if(MealsOfTheWeek[i] > meal_id){
+			MealsOfTheWeek[i] = "" + (MealsOfTheWeek[i] - 1);
+		}
+	}
+	for(var i = meal_id; i< MealList.length; i++){
+		MealList[i] = MealList[i+1];
+		var y = document.getElementById("mealItem" + i);
+		y.setAttribute("id","mealItem" + (i-1));
+	}
+	MealList.pop();
+	element.parentNode.removeChild(element);
+	//console.log(MealList);
+	//console.log(MealsOfTheWeek);
+}
+</script>
+</div>
+
+<!-- YOUR MEALS -->
+<div class="col-3">
+  <h5>Your Meals</h5>
+ <!-- <div class="row"> -->
+	<div>
+	<div class="d-flex flex-column">
+	<div class="form-inline">
+  <div class="form-group mb-1">
+    <input type="text" class="form-control mb-1" id="inputMeal" placeholder="Add meal here">
+  </div>
+  <button class="btn btn-primary mb-2" onclick="addMeal()">Add</button>
+</div>
+<div class="d-flex flex-wrap twos" id="listOfMeals">
+</div>
+	</div>
+	</div>
+</div>
+</div>
+<script>
+var dragSrcEl = null;
+var text = "";
+
+function handleDragStart(e) {
+//  this.style.opacity = '0.4';  // this / e.target is the source node.
+  dragSrcEl = this;
+
+  e.dataTransfer.effectAllowed = 'copy';
+  e.dataTransfer.setData('text/html', this.innerHTML);
+}
+
+function handleDragOver(e) {
+  if (e.preventDefault) {
+    e.preventDefault(); // Necessary. Allows us to drop.
+  }
+
+  e.dataTransfer.dropEffect = 'copy';  // See the section on the DataTransfer object.
+
+  return false;
+}
+
+function handleDragEnter(e) {
+  // this / e.target is the current hover target.
+  this.classList.add('over');
+}
+
+function handleDragLeave(e) {
+  this.classList.remove('over');  // this / e.target is previous target element.
+
+}
+
+
+function handleDrop(e) {
+  // this/e.target is current target element.
+
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops some browsers from redirecting.
+  }
+
+  // Don't do anything if dropping the same column we're dragging.
+ //SAME COLUMN or BOTH ITEMS
+if (dragSrcEl == this){
+alert("same col");
+}else if(this.className.includes("item") && dragSrcEl.className.includes("item")) {
+	alert("both items");
+//COL to ITEM
+}else if(dragSrcEl.className.includes("col") && this.className.includes("col")){
+	alert("move col to col");
+	var mealId = dragSrcEl.id;
+	var text = document.getElementById(mealId).innerHTML;
+	var dayId = this.id;
+	var numMeal = mealId.replace('meal','');
+	var numDay = dayId.replace('meal','');
+	MealsOfTheWeek[numDay] = MealsOfTheWeek[numMeal];
+	if([MealsOfTheWeek[numDay]] == "defunct"){
+	this.innerHTML = text;
+	//document.getElementById("meal" + numMeal).innerHTML = "changed:" + document.getElementById("mealId").innerHTML;
+	}else{
+	document.getElementById("meal" + numDay).innerHTML = '<span>' + MealList[MealsOfTheWeek[numMeal]] + '</span>';
+	}	
+	MealsOfTheWeek[numMeal] = "empty";
+	document.getElementById("meal" + numMeal).innerHTML = "";
+	alert(numMeal);
+//	console.log(MealList);
+//	console.log(MealsOfTheWeek);
+
+//ITEM to COL
+}else if(dragSrcEl.className == "col" ){
+	alert("col to item not allowed");
+}else{
+    // Set the source column's HTML to the HTML of the column we dropped on.
+    //dragSrcEl.innerHTML = this.innerHTML;
+    //this.innerHTML = e.dataTransfer.getData('text/html');
+	var mealId = dragSrcEl.id;
+	var dayId = this.id;
+	var numMeal = mealId.replace('mealItem','');
+	var numDay = dayId.replace('meal','');
+	MealsOfTheWeek[numDay] = numMeal;
+	var x = document.createElement("p");
+	//alert(dayId);
+	alert(MealList[MealsOfTheWeek[numDay]].length);
+	if(MealList[MealsOfTheWeek[numDay]].length > 42){
+		x.setAttribute("class","small");
+	}else if(MealList[MealsOfTheWeek[numDay]].length > 25){
+		x.setAttribute("class","medium");
+	}else if(MealList[MealsOfTheWeek[numDay]].length > 8){
+		x.setAttribute("class","large");
+	}else{
+		x.setAttribute("class","xl");
+	}
+	x.innerHTML = "" + MealList[numMeal];
+	document.getElementById("meal" + numDay).innerHTML = "";
+	document.getElementById("meal" + numDay).appendChild(x);
+	alert(numMeal);
+	console.log(MealList);
+	console.log(MealsOfTheWeek);
+	}
+
+  return false;
+}
+
+function handleDragEnd(e) {
+  // this/e.target is the source node.
+
+  [].forEach.call(cols, function (col) {
+    col.classList.remove('over');
+  });
+}
+
+var items = document.querySelectorAll('.item');
+[].forEach.call(items, function(col) {
+  col.addEventListener('dragstart', handleDragStart, false);
+  col.addEventListener('dragenter', handleDragEnter, false)
+  col.addEventListener('dragover', handleDragOver, false);
+  col.addEventListener('dragleave', handleDragLeave, false);
+  col.addEventListener('drop', handleDrop, false);
+  col.addEventListener('dragend', handleDragEnd, false);
+});
+var cols = document.querySelectorAll('.col');
+[].forEach.call(cols, function(col) {
+  col.addEventListener('dragstart', handleDragStart, false);
+  col.addEventListener('dragenter', handleDragEnter, false)
+  col.addEventListener('dragover', handleDragOver, false);
+  col.addEventListener('dragleave', handleDragLeave, false);
+  col.addEventListener('drop', handleDrop, false);
+  col.addEventListener('dragend', handleDragEnd, false);
+});
+var dragSrcEl = null;
+
+</script>
+</div>
+<style>
+
+</style>
+<!--FOOTER -->
+</body>
+</html> 
